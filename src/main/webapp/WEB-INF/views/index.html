@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Music list</h3>
+<p>
+    <a th:href="@{/music/create}">
+        Add new music
+    </a>
+</p>
+<th:block>
+    <p th:if="${mess}">
+        <span th:text="${mess}"></span>
+    </p>
+</th:block>
+<table id="music">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Singer</th>
+        <th>Genre</th>
+        <th>Music link</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="mu:${music}">
+        <td th:text="${mu.name}"></td>
+        <td th:text="${mu.singer}"></td>
+        <td th:text="${mu.genre}"></td>
+        <td>
+            <audio controls>
+                <source th:src="@{'/music/'+${mu.link}}">
+            </audio>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
